@@ -1,6 +1,6 @@
 /**
- * Second-pass vocabulary cleanup: Dota/Steam/VAC leftovers → Fortnite.
- * Run: node scripts/vocab-fortnite.mjs
+ * Second-pass vocabulary cleanup: Dota/Steam/VAC leftovers → EA FC 27.
+ * Run: node scripts/vocab-fifa-27.mjs
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,30 +20,30 @@ const TEXT_EXTS = new Set([
   '.webmanifest',
 ]);
 const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', '.seo-baseline']);
-const SKIP_FILES = new Set(['rebrand-fortnite.mjs', 'vocab-fortnite.mjs']);
+const SKIP_FILES = new Set(['rebrand-fifa-27.mjs', 'vocab-fifa-27.mjs']);
 
 const REPLACEMENTS = [
-  ['via Steam on Windows', 'via Epic Games Launcher on Windows'],
-  ['via Steam', 'via Epic Games'],
+  ['via Steam on Windows', 'via EA App on Windows'],
+  ['via Steam', 'via EA App'],
   ['on Steam PC', 'on PC'],
   ['Steam PC', 'Windows PC'],
-  ['Steam account', 'Epic account'],
+  ['Steam account', 'EA account'],
   ['Steam inventory', 'Epic locker'],
-  ['Steam platform', 'Epic Games platform'],
+  ['Steam platform', 'EA App platform'],
   ['Steam overlay', 'Epic overlay'],
-  ['Steam restrictions', 'Epic account restrictions'],
-  ['Steam Fortnite', 'Fortnite on Epic'],
-  ['through Steam', 'through Epic Games'],
-  ['exiting Steam', 'exiting the Epic Games Launcher'],
-  ['Current Fortnite client via Steam', 'Current Fortnite client via Epic Games Launcher'],
-  ['right-click Fortnite → Properties', 'open Fortnite settings in the Epic Games Launcher'],
+  ['Steam restrictions', 'EA account restrictions'],
+  ['Steam EA FC 27', 'EA FC 27 on Epic'],
+  ['through Steam', 'through EA App'],
+  ['exiting Steam', 'exiting the EA App'],
+  ['Current EA FC 27 client via Steam', 'Current EA FC 27 client via EA App'],
+  ['right-click EA FC 27 → Properties', 'open EA FC 27 settings in the EA App'],
   ['reqSteam', 'reqEpic'],
   ['compatSteam', 'compatEpic'],
-  [' Steam ', ' Epic Games '],
-  ['Steam,', 'Epic Games,'],
-  ['Steam.', 'Epic Games.'],
-  ['Steam)', 'Epic Games)'],
-  ['(Steam', '(Epic Games'],
+  [' Steam ', ' EA App '],
+  ['Steam,', 'EA App,'],
+  ['Steam.', 'EA App.'],
+  ['Steam)', 'EA App)'],
+  ['(Steam', '(EA App'],
 
   ['Valve Terms of Use', 'Epic Terms of Service'],
   ['Valve-approved', 'Epic-approved'],
@@ -71,16 +71,16 @@ const REPLACEMENTS = [
   ['MMR.', 'rank.'],
   [' MMR ', ' rank '],
 
-  ['ranked and Turbo', 'Battle Royale and Zero Build'],
-  ['Ranked, Turbo', 'Battle Royale, Zero Build'],
-  ['Turbo or bot lobbies', 'Creative or Zero Build lobbies'],
-  ['Turbo lobby', 'Zero Build lobby'],
-  ['Turbo preset', 'Zero Build preset'],
-  ['Turbo-friendly', 'Zero Build-friendly'],
-  ['and Turbo', 'and Zero Build'],
-  ['or Turbo', 'or Zero Build'],
-  [' Turbo', ' Zero Build'],
-  ['Turbo ', 'Zero Build '],
+  ['ranked and Turbo', 'Ultimate Team and Career Mode'],
+  ['Ranked, Turbo', 'Ultimate Team, Career Mode'],
+  ['Turbo or bot lobbies', 'Creative or Career Mode lobbies'],
+  ['Turbo lobby', 'Career Mode lobby'],
+  ['Turbo preset', 'Career Mode preset'],
+  ['Turbo-friendly', 'Career Mode-friendly'],
+  ['and Turbo', 'and Career Mode'],
+  ['or Turbo', 'or Career Mode'],
+  [' Turbo', ' Career Mode'],
+  ['Turbo ', 'Career Mode '],
 
   ['map hack and zoom hack', 'ESP wallhack and radar hack'],
   ['scripts, map hack, and zoom hack', 'aimbot, ESP wallhack, and radar hack'],
@@ -200,7 +200,7 @@ const REPLACEMENTS = [
   ['Fog of war', 'Storm circle'],
   ['fog of war', 'storm circle'],
 
-  ['Fortnite Scripts, Map Hack & ESP', 'Fortnite Aimbot, ESP & Wallhack'],
+  ['EA FC 27 Scripts, Map Hack & ESP', 'EA FC 27 Aimbot, ESP & Wallhack'],
   ['humanized scripts', 'humanized aimbot'],
   ['script automation', 'aimbot automation'],
   ['script delays', 'aimbot smoothness'],
@@ -211,7 +211,7 @@ const REPLACEMENTS = [
   ['Scripts ', 'Aimbot '],
   [' scripts.', ' aimbot.'],
 
-  ['npc_fortnite_hero_invoker', 'training_bot'],
+  ['npc_fifa-27_hero_invoker', 'training_bot'],
   ['-createhero', '-spawnbot'],
   ['item_orchid', 'item_shield'],
   ['Orchid Malevolence', 'Shield Potion'],

@@ -5,7 +5,7 @@ import zlib from 'node:zlib';
 import { resolvePathRedirect } from './redirects.mjs';
 import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
 
-const CANONICAL_HOST = 'fortnite-cheats.com';
+const CANONICAL_HOST = 'fifa27hacks.com';
 const distDir = path.resolve('dist');
 const port = Number(process.env.PORT) || 3000;
 
@@ -166,7 +166,13 @@ const server = http.createServer((req, res) => {
   const { pathname, query, fragment } = splitUrl(req.url);
   const checkoutRedirect = resolveCheckoutPathRedirect(pathname);
   if (checkoutRedirect) {
-    res.writeHead(302, { Location: checkoutRedirect });
+    const dest = new URL(checkoutRedirect);
+    const { search } = splitUrl(req.url);
+    if (search) {
+      const params = new URLSearchParams(search.slice(1));
+      params.forEach((value, key) => dest.searchParams.set(key, value));
+    }
+    res.writeHead(302, { Location: dest.toString() });
     res.end();
     return;
   }

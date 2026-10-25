@@ -7,6 +7,8 @@ export type BlogBlock =
   | { type: 'cta'; title: string; text: string; href: string };
 
 export interface BlogPostFull extends BlogPost {
+  /** SERP title (≤60 chars). On-page H1 uses `title`. */
+  seoTitle?: string;
   featured?: boolean;
   author?: string;
   body: BlogBlock[];

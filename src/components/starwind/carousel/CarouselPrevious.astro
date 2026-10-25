@@ -17,6 +17,7 @@ const controlClassName = carouselPrevious({ class: className });
   class={carouselControl({ variant, size, class: controlClassName })}
   {...rest}
   data-slot="carousel-previous"
+  data-sw-carousel-previous
 >
   <slot>
     <ChevronLeft aria-hidden={true} />

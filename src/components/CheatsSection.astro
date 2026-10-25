@@ -1,11 +1,12 @@
 ---
-import { t } from '../i18n';
+import { getActiveLocale, t } from '../i18n';
 import { cheatPages } from '../data/products';
 import { cheatTierIcons } from '../data/sectionIcons';
 import SectionHeader from './SectionHeader.astro';
 import CatalogCard from './CatalogCard.astro';
-import { cheatPath } from '../utils/path';
+import { localizedProductPath } from '../utils/path';
 
+const locale = getActiveLocale();
 const s = t.cheats;
 ---
 
@@ -18,7 +19,7 @@ const s = t.cheats;
         <CatalogCard
           label={cheat.tier ?? cheat.name}
           title={cheat.title}
-          href={cheatPath(cheat.slug)}
+          href={localizedProductPath(cheat.slug, locale)}
           buyUrl={cheat.buyUrl}
           features={cheat.features}
           more={cheat.more}

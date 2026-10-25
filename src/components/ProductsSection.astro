@@ -1,11 +1,11 @@
 ---
 import '../styles/product-cheat-page.css';
-import { t } from '../i18n';
-import { productPages } from '../data/products';
+import { getActiveLocale, t } from '../i18n';
+import { getProductCatalogPreview, getProductPages } from '../data/products';
 import { cheatTierIcons, productCategoryIcons } from '../data/sectionIcons';
 import SectionHeader from './SectionHeader.astro';
 import CatalogCard from './CatalogCard.astro';
-import { productPath } from '../utils/path';
+import { localizedProductPath } from '../utils/path';
 import {
   Carousel,
   CarouselContent,
@@ -14,7 +14,9 @@ import {
   CarouselPrevious,
 } from '@/components/starwind/carousel';
 
+const locale = getActiveLocale();
 const s = t.products;
+const productPages = getProductPages(locale);
 
 function cardIcon(product: (typeof productPages)[number]) {
   if (product.kind === 'tier') {
@@ -37,7 +39,6 @@ function cardLabel(product: (typeof productPages)[number]) {
 
     <div class="products-carousel" data-products-carousel>
       <Carousel
-        autoInit
         opts={{ align: 'start', containScroll: 'trimSnaps', dragFree: false }}
         class="products-carousel__root"
       >
@@ -47,13 +48,15 @@ function cardLabel(product: (typeof productPages)[number]) {
           <div class="products-carousel__viewport">
             <CarouselContent class="products-carousel__track">
               {
-                productPages.map((product) => (
+                productPages.map((product) => {
+                  const preview = getProductCatalogPreview(product);
+                  return (
                   <CarouselItem class="products-carousel__slide">
                     <CatalogCard
                       class="catalog-card--carousel"
                       label={cardLabel(product)}
                       title={product.title}
-                      href={productPath(product.slug)}
+                      href={localizedProductPath(product.slug, locale)}
                       buyUrl={product.buyUrl}
                       features={product.features}
                       more={product.more}
@@ -63,9 +66,12 @@ function cardLabel(product: (typeof productPages)[number]) {
                       buyLabel="Buy now"
                       viewLabel="View details"
                       maxFeatures={5}
+                      previewSrc={preview?.src}
+                      previewAlt={preview?.alt}
                     />
                   </CarouselItem>
-                ))
+                  );
+                })
               }
             </CarouselContent>
           </div>

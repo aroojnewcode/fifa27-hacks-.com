@@ -1,0 +1,32 @@
+---
+import { localeStaticPaths, initLocalePage } from '../../i18n/page';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n';
+import { resolvePageSeo } from '../../config/seo';
+import LegalPage from '../../components/LegalPage.astro';
+import { breadcrumbSchema, webPageSchema } from '../../utils/schema';
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = initLocalePage(Astro);
+const content = t.legalPages.privacy;
+const seo = resolvePageSeo(Astro.url.pathname);
+---
+
+<BaseLayout locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: content.title,
+      description: content.description,
+      url: '/privacy/',
+    }),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: content.title, path: '/privacy/' },
+    ]),
+  ]}
+>
+  <LegalPage content={content} locale={locale} />
+</BaseLayout>

@@ -3,7 +3,8 @@ import { cheatPages } from '../data/products';
 import { cheatTierIcons } from '../data/sectionIcons';
 import Icon from './icons/Icon.astro';
 import type { IconName } from './icons/types';
-import { productPath } from '../utils/path';
+import { getActiveLocale } from '../i18n';
+import { localizedProductPath } from '../utils/path';
 import { Badge } from '@/components/starwind/badge';
 import {
   Table,
@@ -28,12 +29,13 @@ interface Props {
 }
 
 const { rows, highlightSlug } = Astro.props;
+const locale = getActiveLocale();
 
 const tiers = cheatPages.map((c) => ({
   slug: c.slug,
   name: c.name,
   icon: cheatTierIcons[c.name] ?? 'crosshair',
-  href: productPath(c.slug),
+  href: localizedProductPath(c.slug, locale),
 }));
 
 const tierSlugs = tiers.map((t) => t.slug);
@@ -42,7 +44,7 @@ const tierSlugs = tiers.map((t) => t.slug);
 <section class="space-y-4" aria-labelledby="compare-heading">
   <header class="section-header">
     <p class="section-header__eyebrow">Compare</p>
-    <h1 id="compare-heading" class="section-header__title">Compare all plans</h1>
+    <h2 id="compare-heading" class="section-header__title">Compare all plans</h2>
     <p class="section-header__subtitle">Side-by-side look at what each tier includes.</p>
   </header>
 

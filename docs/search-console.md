@@ -1,17 +1,23 @@
-# Search Console workflow (fortnite-cheats.com)
+# Search Console workflow (fifa27hacks.com)
+
+If `src/config/seo.ts` or `src/config/pageSeo.ts` are empty after a failed build (disk full), restore from git:
+
+`git checkout HEAD -- src/config/seo.ts src/config/pageSeo.ts`
+
+Then re-apply lite/pro `PAGE_SEO` entries and elite `$150 lifetime` pricing in `pageSeo.ts`.
 
 You verify the domain at your DNS provider—no HTML meta tags in the repo.
 
 ## Setup (once)
 
-1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `fortnite-cheats.com` if it is not already there.
+1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `fifa27hacks.com` if it is not already there.
 2. Under **Sitemaps**, submit the index first (required):
-   - `https://fortnite-cheats.com/sitemap.xml`
+   - `https://fifa27hacks.com/sitemap.xml`
 3. Optional — submit child sitemaps too (same URLs, clearer GSC status per section):
-   - `https://fortnite-cheats.com/sitemap-pages.xml`
-   - `https://fortnite-cheats.com/sitemap-products.xml`
-   - `https://fortnite-cheats.com/sitemap-blog.xml`
-   - `https://fortnite-cheats.com/sitemap-forum.xml`
+   - `https://fifa27hacks.com/sitemap-pages.xml`
+   - `https://fifa27hacks.com/sitemap-products.xml`
+   - `https://fifa27hacks.com/sitemap-blog.xml`
+   - `https://fifa27hacks.com/sitemap-forum.xml`
 4. Repeat in [Bing Webmaster Tools](https://www.bing.com/webmasters) if you use Bing.
 
 ## Monthly tune (15 minutes)
@@ -26,10 +32,18 @@ You verify the domain at your DNS provider—no HTML meta tags in the repo.
 
 | Common query intent | Edit path in `pageSeo.ts` |
 | ------------------- | ------------------------- |
-| fortnite cheats (broad) | `/` |
-| lite / pro / elite | `/cheats/compare/`, `/cheats/lite/`, etc. |
-| ESP wallhack, aimbot | `/cheats/pro/`, blog posts (titles set per article) |
-| hwid, skin changer | `/products/fortnite-cheats/utilities/` |
-| purchase / refund | `/terms/`, `/contact/` |
+| EA FC 27 hacks (broad) | `/` |
+| lite / pro / elite | `/en/products/fifa-27-hacks/lite/`, `/pro/`, `/elite/` |
+| auto green, pitch overlay | `/en/products/fifa-27-hacks/pro/`, blog guides |
+| hwid, icon unlocker | `/en/products/fifa-27-hacks/utilities/` |
+| purchase / refund | `/en/terms/`, `/en/support/` |
 
 Product and blog article pages still use their own titles from content; add entries to `PAGE_SEO` only when you want a fixed override for a specific pathname.
+
+## Blog hreflang policy
+
+- **English:** `/en/blog/{slug}/` is always indexed. SERP titles live in [`src/data/blog/seoTitles.ts`](../src/data/blog/seoTitles.ts); on-page H1 stays the long `post.title`.
+- **Other locales:** A blog article is indexed only when `src/i18n/generated/{locale}.json` includes a full translated `body` for that slug (see `localeHasFullBlogTranslation` in [`src/data/blog/locale.ts`](../src/data/blog/locale.ts)). Until then, non-EN article URLs stay `noindex` and are omitted from the sitemap.
+- **Hreflang on articles:** Reciprocal alternates are emitted when a localized body exists; otherwise English articles use `en` only. Blog **hub** pages (`/de/blog/`, etc.) keep full locale alternates.
+
+After deploy, URL-inspect `/en/blog/…` for indexability. For a locale with completed `i18n:sync` output, inspect `/de/blog/{slug}/` only when that slug has generated body content.

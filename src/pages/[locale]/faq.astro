@@ -1,0 +1,51 @@
+---
+import { localeStaticPaths, initLocalePage } from '../../i18n/page';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getFaqsForLocale, getFaqSectionCopy } from '../../data/faq/locale';
+import { t } from '../../i18n';
+import { resolvePageSeo } from '../../config/seo';
+import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../../utils/schema';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteFaqSection from '../../components/SiteFaqSection.astro';
+
+export const getStaticPaths = localeStaticPaths;
+const locale = initLocalePage(Astro);
+
+const seo = resolvePageSeo(Astro.url.pathname);
+const breadcrumbs = [
+  { name: t.ui.breadcrumbHome, path: '/' },
+  { name: t.ui.breadcrumbFaq, path: '/faq/' },
+];
+
+const faqs = getFaqsForLocale(locale);
+const faqCopy = getFaqSectionCopy(locale, 'full');
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: seo.title,
+      description: seo.description,
+      url: '/faq/',
+    }),
+    breadcrumbSchema(breadcrumbs),
+    faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
+  ]}
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} locale={locale} />
+    </div>
+  </section>
+  <SiteFaqSection
+    items={faqs}
+    variant="full"
+    titleId="faq-page-title"
+    eyebrow={faqCopy.eyebrow}
+    title={faqCopy.title}
+    subtitle={faqCopy.subtitle}
+  />
+</BaseLayout>

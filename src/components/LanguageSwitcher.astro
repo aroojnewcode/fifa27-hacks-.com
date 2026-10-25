@@ -1,0 +1,82 @@
+---
+import { LOCALE_CODES, LOCALES, getLocaleDefinition } from '../i18n/locales';
+import { switchLocalePath } from '../i18n/paths';
+import Icon from './icons/Icon.astro';
+
+interface Props {
+  locale: string;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+const current = getLocaleDefinition(locale);
+const pathname = Astro.url.pathname;
+---
+
+<div class:list={['relative shrink-0', className]} data-lang-switcher>
+  <button
+    type="button"
+    class="inline-flex h-9 max-w-[10.5rem] items-center gap-1.5 rounded-lg border border-border/80 bg-background/50 px-2.5 text-xs font-medium text-foreground transition-colors hover:bg-muted sm:max-w-[12rem] sm:px-3 sm:text-sm xl:max-w-none"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    data-lang-trigger
+  >
+    <Icon name="globe" size={16} class="text-primary" />
+    <span class="min-w-0 truncate">{current.nativeName}</span>
+    <Icon name="chevronDown" size={14} class="opacity-70" />
+  </button>
+  <ul
+    class="absolute right-0 z-[60] mt-2 hidden max-h-[min(70vh,22rem)] w-56 overflow-y-auto rounded-xl border border-border bg-popover p-1 shadow-lg"
+    role="listbox"
+    aria-label="Language"
+    data-lang-menu
+  >
+    {
+      LOCALE_CODES.map((code) => {
+        const def = LOCALES[code];
+        const href = switchLocalePath(pathname, code);
+        const selected = code === locale;
+        return (
+          <li role="option" aria-selected={selected}>
+            <a
+              href={href}
+              hreflang={def.hreflang}
+              lang={def.hreflang}
+              class:list={[
+                'flex flex-col rounded-lg px-3 py-2 text-sm transition-colors hover:bg-muted',
+                selected && 'bg-muted font-semibold text-primary',
+              ]}
+            >
+              <span>{def.nativeName}</span>
+              <span class="text-xs text-muted-foreground">{def.label}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>
+
+<script>
+  document.querySelectorAll('[data-lang-switcher]').forEach((root) => {
+    const trigger = root.querySelector('[data-lang-trigger]');
+    const menu = root.querySelector('[data-lang-menu]');
+    if (!trigger || !menu) return;
+
+    const close = () => {
+      menu.classList.add('hidden');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = menu.classList.toggle('hidden');
+      trigger.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+
+    document.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  });
+</script>

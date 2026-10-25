@@ -2,14 +2,17 @@
 import type { ProductAcquisition, ProductSlide } from '../../data/products';
 import { productAcquisitionStepIcons } from '../../data/sectionIcons';
 import Icon from '../icons/Icon.astro';
+import { checkoutLinkAttrs } from '../../utils/path';
+import { Button } from '@/components/starwind/button';
 
 interface Props {
   images: ProductSlide[];
   acquisition: ProductAcquisition;
   productName: string;
+  buyUrl: string;
 }
 
-const { images, acquisition, productName } = Astro.props;
+const { images, acquisition, productName, buyUrl } = Astro.props;
 
 const calloutLabels = ['A', 'B', 'C', 'D', 'E', 'F'];
 ---
@@ -82,6 +85,10 @@ const calloutLabels = ['A', 'B', 'C', 'D', 'E', 'F'];
               ))
             }
           </ol>
+          <Button as="a" href={buyUrl} variant="primary" size="lg" class="mt-6 w-full rounded-xl" {...checkoutLinkAttrs(buyUrl)}>
+            Get access
+            <Icon name="arrowRight" size={17} />
+          </Button>
         </div>
       </aside>
     </div>

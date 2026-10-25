@@ -1,6 +1,7 @@
 ---
 import Icon from './icons/Icon.astro';
-import { ROUTES } from '../utils/path';
+import { getActiveLocale } from '../i18n';
+import { localizedHref, ROUTES } from '../utils/path';
 import { blogTagIcons } from '../data/sectionIcons';
 import type { BlogPost } from '../i18n/types';
 import type { IconName } from './icons/types';
@@ -16,7 +17,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
 ---
 
 <div class:list={['blog-article__toolbar', className]}>
-  <a href={ROUTES.blog} class="blog-article__toolbar-back shrink-0">
+  <a href={localizedHref(ROUTES.blog, getActiveLocale())} class="blog-article__toolbar-back shrink-0">
     <Icon name="chevronLeft" size={15} aria-hidden="true" />
     All articles
   </a>
@@ -31,7 +32,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
     </Badge>
     <Badge variant="outline" size="sm" class="blog-article__toolbar-badge max-w-[8.5rem] gap-1 rounded-full" title={post.date}>
       <Icon name="calendar" size={12} class="shrink-0" />
-      <span class="truncate">{post.date}</span>
+      <span class="truncate blog-card__footer-date">{post.date}</span>
     </Badge>
   </div>
 </div>

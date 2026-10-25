@@ -1,0 +1,19 @@
+---
+import { CHECKOUT, CHECKOUT_SLUG_TO_PRODUCT } from '../../../config/checkout';
+import { checkoutRedirectUrl } from '../../../utils/checkoutRedirect';
+
+export function getStaticPaths() {
+  return Object.keys(CHECKOUT_SLUG_TO_PRODUCT).map((product) => ({
+    params: { product },
+  }));
+}
+
+const slug = Astro.params.product ?? '';
+const productKey = CHECKOUT_SLUG_TO_PRODUCT[slug];
+
+if (!productKey) {
+  return Astro.redirect('/', 302);
+}
+
+return Astro.redirect(checkoutRedirectUrl(CHECKOUT[productKey], Astro.url), 302);
+---

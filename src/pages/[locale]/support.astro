@@ -1,0 +1,37 @@
+---
+import { localeStaticPaths, initLocalePage } from '../../i18n/page';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t } from '../../i18n';
+import { resolvePageSeo } from '../../config/seo';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ContactSupportSection from '../../components/ContactSupportSection.astro';
+import { breadcrumbSchema, webPageSchema } from '../../utils/schema';
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = initLocalePage(Astro);
+const seo = resolvePageSeo(Astro.url.pathname);
+---
+
+<BaseLayout locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: t.support.title,
+      description: seo.description,
+      url: '/support/',
+    }),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: t.support.title, path: '/support/' },
+    ]),
+  ]}
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: t.support.title, path: '/support/' }]} locale={locale} />
+      <ContactSupportSection />
+    </div>
+  </section>
+</BaseLayout>

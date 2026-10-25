@@ -4,7 +4,8 @@ import SectionHeader from '../SectionHeader.astro';
 import BlogCard from '../BlogCard.astro';
 import { Button } from '@/components/starwind/button';
 import Icon from '../icons/Icon.astro';
-import { ROUTES } from '../../utils/path';
+import { getActiveLocale } from '../../i18n';
+import { localizedHref, ROUTES } from '../../utils/path';
 
 interface Props {
   posts: BlogPost[];
@@ -32,7 +33,7 @@ const { posts, productName } = Astro.props;
         </div>
 
         <div class="mt-12 flex justify-start lg:justify-center">
-          <Button as="a" href={ROUTES.blog} variant="outline" class="rounded-full">
+          <Button as="a" href={localizedHref(ROUTES.blog, getActiveLocale())} variant="outline" class="rounded-full">
             Browse all guides
             <Icon name="arrowRight" size={17} />
           </Button>

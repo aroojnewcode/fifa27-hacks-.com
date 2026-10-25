@@ -18,9 +18,10 @@ import ProductRelatedGuidesSection from './product/ProductRelatedGuidesSection.a
 interface Props {
   product: ProductPage;
   breadcrumbs?: BreadcrumbItem[];
+  locale: string;
 }
 
-const { product, breadcrumbs } = Astro.props;
+const { product, breadcrumbs, locale } = Astro.props;
 const productFaqs = getProductFaqs(product.slug, product.kind);
 const relatedPosts = getRelatedBlogPostsForProduct(product.relatedBlogSlugs, 6);
 
@@ -36,7 +37,7 @@ const showDescToggle = descriptionBlocks.length > 2;
 <div class="product-detail">
 <section class="product-detail-hero py-8 md:py-12">
   <div class="mx-auto max-w-6xl px-5">
-    {breadcrumbs && <Breadcrumbs items={breadcrumbs} class="product-detail__breadcrumbs" />}
+    {breadcrumbs && <Breadcrumbs items={breadcrumbs} locale={locale} class="product-detail__breadcrumbs" />}
 
     <div class="mt-6">
       <ProductDetailHeader product={product} />
@@ -63,6 +64,7 @@ const showDescToggle = descriptionBlocks.length > 2;
   images={product.images}
   acquisition={product.acquisition}
   productName={product.name}
+  buyUrl={product.buyUrl}
 />
 
 <ProductRelatedGuidesSection posts={relatedPosts} productName={product.name} />

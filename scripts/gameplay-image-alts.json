@@ -1,85 +1,85 @@
 {
   "gameplay": [
     {
-      "file": "fortnite-esp-wallhack.png",
-      "alt": "Fortnite ESP wallhack cheat gameplay with player boxes distance tags and aimbot FOV",
+      "file": "fifa-27-pitch-overlay.png",
+      "alt": "EA FC 27 pitch ESP overlay in Manchester City vs Liverpool with Haaland, Foden, Salah and van Dijk name tags and distance meters",
       "srcIndex": 0
     },
     {
-      "file": "fortnite-aimbot-combat.png",
-      "alt": "Fortnite aimbot cheat gameplay with FOV circle and green skeleton ESP on enemy",
+      "file": "fifa-27-perfect-shot.png",
+      "alt": "EA FC 27 perfect shot assist overlay during Barcelona vs Real Madrid with Lewandowski, Pedri and Bellingham marked on the pitch",
       "srcIndex": 1
     },
     {
-      "file": "fortnite-player-esp.png",
-      "alt": "Fortnite player ESP wallhack showing skeletons boxes and distance meters",
+      "file": "fifa-27-player-overlay.png",
+      "alt": "EA FC 27 player ESP during Barcelona vs Real Madrid with Lewandowski, Pedri, Bellingham and Valverde distance markers",
       "srcIndex": 2
     },
     {
-      "file": "fortnite-radar-hack.png",
-      "alt": "Fortnite radar and ESP overlay with enemy name tags health and range markers",
+      "file": "fifa-27-mini-pitch-radar.png",
+      "alt": "EA FC 27 mini pitch radar and ESP during Manchester City vs Liverpool showing tactical dots and opponent distance labels",
       "srcIndex": 3
     },
     {
-      "file": "fortnite-auto-aim.png",
-      "alt": "Fortnite sniper aimbot cheat with green ESP box weapon label and FOV circle",
+      "file": "fifa-27-auto-green.png",
+      "alt": "EA FC 27 auto green timing overlay from behind Vini Jr. targeting Rúben Dias with a 15m distance tag and assist line",
       "srcIndex": 4
     },
     {
-      "file": "fortnite-loot-radar.png",
-      "alt": "Fortnite loot and chest ESP gameplay with enemy boxes and distance trackers",
+      "file": "fifa-27-fut-snipe-assist.png",
+      "alt": "EA FC 27 FUT snipe assist view in Real Madrid vs Barcelona with Ronaldo, Mbappé and passing lane lines on the pitch",
       "srcIndex": 5
     },
     {
-      "file": "fortnite-skin-changer.png",
-      "alt": "Fortnite cheat gameplay with chams skeleton ESP and aim lock on pier",
-      "srcIndex": 6
+      "file": "fifa-27-icon-unlocker.png",
+      "alt": "EA FC 27 player tracking overlay highlighting Vini Jr. and Rüdiger with cyan and red boxes and meter distances",
+      "srcIndex": 2
     },
     {
-      "file": "fortnite-thermal-esp.png",
-      "alt": "Fortnite thermal vision ESP showing skeleton wallhack HP and distance",
-      "srcIndex": 7
+      "file": "fifa-27-thermal-esp.png",
+      "alt": "EA FC 27 thermal-style player ESP in Barcelona vs Real Madrid highlighting attackers and midfielders with colored boxes",
+      "srcIndex": 1
     },
     {
-      "file": "fortnite-build-fight-esp.png",
-      "alt": "Fortnite build fight ESP wallhack with names HP bars and FOV circle",
-      "srcIndex": 8
+      "file": "fifa-27-build-fight-esp.png",
+      "alt": "EA FC 27 defensive ESP locking onto Rúben Dias from Vini Jr. with FPS and ping overlay during Real Madrid vs Manchester City",
+      "srcIndex": 4
     },
     {
-      "file": "fortnite-arena-wallhack.png",
-      "alt": "Fortnite arena wallhack ESP with wireframe players and weapon tags",
-      "srcIndex": 9
+      "file": "fifa-27-arena-wallhack.png",
+      "alt": "EA FC 27 arena mode ESP in Real Madrid vs Barcelona showing Ronaldo, Mbappé, Bellingham and opponent Rüdiger with lane lines",
+      "srcIndex": 5
     },
     {
-      "file": "fortnite-spawn-island-esp.png",
-      "alt": "Fortnite spawn island ESP with skeleton boxes and aimbot reticle",
-      "srcIndex": 10
+      "file": "fifa-27-spawn-island-esp.png",
+      "alt": "EA FC 27 kickoff ESP overlay for Manchester City vs Liverpool with multi-player boxes across the center circle",
+      "srcIndex": 0
     },
     {
-      "file": "fortnite-long-range-esp.png",
-      "alt": "Fortnite long range ESP wallhack with enemy names health and weapons",
-      "srcIndex": 11
+      "file": "fifa-27-long-range-esp.png",
+      "alt": "EA FC 27 long-range pitch ESP in Barcelona vs Real Madrid with distant player names and meter readouts",
+      "srcIndex": 1
     },
     {
-      "file": "fortnite-aimbot-lock.png",
-      "alt": "Fortnite aimbot lock with green skeleton ESP FOV circle and head priority",
-      "srcIndex": 12
+      "file": "fifa-27-aimbot-lock.png",
+      "alt": "EA FC 27 shot lock assist targeting Rúben Dias with red ESP box and green connection line from Vini Jr. in rivals play",
+      "srcIndex": 4
     },
     {
-      "file": "fortnite-chams-esp.png",
-      "alt": "Fortnite chams and skeleton ESP cheat on wooden pier",
-      "srcIndex": 13
+      "file": "fifa-27-chams-esp.png",
+      "alt": "EA FC 27 chams-style player ESP on Vini Jr. and Rüdiger with cyan tracking lines and distance tags at night",
+      "srcIndex": 2
     },
     {
-      "file": "fortnite-squad-esp.png",
-      "alt": "Fortnite multi-player ESP wallhack with boxes skeletons and distances",
-      "srcIndex": 14
+      "file": "fifa-27-squad-esp.png",
+      "alt": "EA FC 27 squad ESP wallhack in Manchester City vs Liverpool marking Haaland, De Bruyne, Foden, Salah and van Dijk",
+      "srcIndex": 0
     },
     {
-      "file": "fortnite-combat-esp.png",
-      "alt": "Fortnite combat ESP and aimbot overlay in open field fight",
-      "srcIndex": 15
+      "file": "fifa-27-combat-esp.png",
+      "alt": "EA FC 27 1v1 duel ESP behind Vini Jr. highlighting Rüdiger at 14 meters with red box and cyan player outline",
+      "srcIndex": 2
     }
   ],
-  "sourceCount": 16
+  "sourceCount": 6
 }

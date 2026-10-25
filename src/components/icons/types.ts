@@ -35,6 +35,7 @@ export type IconName =
   | 'wifi'
   | 'appWindow'
   | 'gamepad2'
+  | 'globe'
   | 'messageCircle'
   | 'navFeatures'
   | 'navCheats'

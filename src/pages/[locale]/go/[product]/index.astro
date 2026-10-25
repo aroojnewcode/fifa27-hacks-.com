@@ -1,0 +1,24 @@
+---
+import { CHECKOUT, CHECKOUT_SLUG_TO_PRODUCT } from '../../../../config/checkout';
+import { localeStaticPaths } from '../../../../i18n/page';
+import { checkoutRedirectUrl } from '../../../../utils/checkoutRedirect';
+
+export function getStaticPaths() {
+  const products = Object.keys(CHECKOUT_SLUG_TO_PRODUCT);
+  return localeStaticPaths().flatMap(({ params: { locale } }) =>
+    products.map((product) => ({
+      params: { locale, product },
+    })),
+  );
+}
+
+const slug = Astro.params.product ?? '';
+const productKey = CHECKOUT_SLUG_TO_PRODUCT[slug];
+
+if (!productKey) {
+  const locale = Astro.params.locale ?? 'en';
+  return Astro.redirect(`/${locale}/`, 302);
+}
+
+return Astro.redirect(checkoutRedirectUrl(CHECKOUT[productKey], Astro.url), 302);
+---

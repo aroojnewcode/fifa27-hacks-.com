@@ -1,6 +1,9 @@
 ---
 import { t } from '../i18n';
+import { localePath } from '../i18n/paths';
 import { checkoutPath } from '../config/checkout';
+import { checkoutLinkAttrs } from '../utils/path';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 import { Button } from '@/components/starwind/button';
 import AnimatedThemeSwitch from './AnimatedThemeSwitch.astro';
 import {
@@ -15,41 +18,62 @@ import SlideRevealButton from './SlideRevealButton.astro';
 
 import type { IconName } from './icons/types';
 
-const navIcons: Record<string, IconName> = {
-  Products: 'navProducts',
-  Blog: 'navBlog',
-  Forum: 'messageCircle',
-  FAQ: 'navFaq',
-  Support: 'navSupport',
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const navIconsByHref: Record<string, IconName> = {
+  '/': 'appWindow',
+  '/products/fifa-27-hacks/': 'navProducts',
+  '/blog/': 'navBlog',
+  '/forum/': 'messageCircle',
+  '/faq/': 'navFaq',
+  '/support/': 'navSupport',
 };
 
-const purchaseUrl = checkoutPath('fortnite');
+const purchaseUrl = checkoutPath('fifa27');
+const purchaseLink = checkoutLinkAttrs(purchaseUrl);
+const homeHref = localePath('/', locale);
 ---
 
 <header class="pointer-events-none fixed inset-x-0 top-0 z-50">
   <div class="flex justify-center px-3 pt-3 sm:px-4 sm:pt-4" data-floating-nav>
     <div
-      class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:h-[3.75rem]"
+      class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-2 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:grid lg:h-[3.75rem] lg:grid-cols-[minmax(0,1fr)_auto_minmax(15rem,1.15fr)] lg:items-center lg:gap-x-8 xl:grid-cols-[minmax(0,1fr)_auto_minmax(17rem,1.2fr)] xl:gap-x-10"
     >
-    <a href="/" class="inline-flex min-w-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
-      <span class="truncate" aria-hidden="true">Fortnite<span class="text-primary">Cheats</span></span>
+    <a
+      href={homeHref}
+      class="inline-flex min-w-0 shrink-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide lg:justify-self-start"
+    >
+      <span class="truncate">EA FC 27<span class="text-primary">Cheats</span></span>
     </a>
 
-    <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex" aria-label="Primary">
+    <nav
+      class="hidden min-w-0 max-w-full items-center justify-center gap-2 px-1 lg:col-start-2 lg:flex lg:gap-2.5 lg:pr-12 xl:gap-3 xl:pr-16 2xl:pr-20"
+      aria-label="Primary"
+    >
       {t.nav.map((link) => (
         <a
-          href={link.href}
-          class="nav-link inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          href={localePath(link.href, locale)}
+          class="nav-link inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-xs font-medium text-foreground/90 transition-colors hover:text-primary xl:gap-1.5 xl:text-sm"
           data-nav-link
           {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
         >
-          <Icon name={navIcons[link.label] ?? 'navFeatures'} size={16} />
+          <Icon name={navIconsByHref[link.href] ?? 'navFeatures'} size={16} class="hidden xl:block" />
           {link.label}
         </a>
       ))}
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div
+      class="flex shrink-0 items-center justify-end gap-2.5 lg:col-start-3 lg:justify-self-end lg:gap-3 lg:border-l lg:border-border/50 lg:pl-8 lg:ml-4 xl:pl-10 xl:ml-5"
+    >
+      <LanguageSwitcher
+        locale={locale}
+        class="relative z-20 ms-1 shrink-0 rounded-lg bg-background/70 ring-1 ring-border/40 sm:ms-2 lg:ms-3 lg:min-w-[8.25rem] xl:min-w-[9rem]"
+      />
       <div class="hidden items-center sm:flex">
         <SlideRevealButton href={purchaseUrl} class="hidden lg:inline-flex" ariaLabel={t.ui.checkoutAria}>
           {t.ui.browseCheats}
@@ -74,17 +98,17 @@ const purchaseUrl = checkoutPath('fortnite');
           <nav class="flex flex-col gap-1" aria-label="Mobile">
             {t.nav.map((link) => (
               <a
-                href={link.href}
-                class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+                href={localePath(link.href, locale)}
+                class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-foreground/90 transition-colors hover:bg-muted hover:text-primary"
                 data-nav-link
                 {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
               >
-                <Icon name={navIcons[link.label] ?? 'navFeatures'} size={16} />
+                <Icon name={navIconsByHref[link.href] ?? 'navFeatures'} size={16} />
                 {link.label}
               </a>
             ))}
           </nav>
-          <Button as="a" href={purchaseUrl} variant="primary" class="w-full justify-center" aria-label={t.ui.checkoutAria}>
+          <Button as="a" href={purchaseUrl} variant="primary" class="w-full justify-center" aria-label={t.ui.checkoutAria} {...purchaseLink}>
             {t.ui.browseCheatsMobile}
           </Button>
           <div class="flex justify-center pt-1">

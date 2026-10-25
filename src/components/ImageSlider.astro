@@ -42,7 +42,7 @@ const imageWidths = isHero ? HERO_IMAGE_WIDTHS : undefined;
     autoInit={!isHero}
     data-hero-embla={isHero || undefined}
     opts={{ loop: images.length > 1, align: 'start' }}
-    class="w-full"
+    class:list={['w-full', isHero && 'group/carousel']}
   >
     <CarouselContent>
       {images.map((img, i) => (
@@ -74,10 +74,24 @@ const imageWidths = isHero ? HERO_IMAGE_WIDTHS : undefined;
         </CarouselItem>
       ))}
     </CarouselContent>
-    {!isHero && images.length > 1 && (
+    {images.length > 1 && (
       <>
-        <CarouselPrevious class="left-2" />
-        <CarouselNext class="right-2" />
+        <CarouselPrevious
+          class:list={[
+            'top-1/2 -translate-y-1/2',
+            isHero
+              ? 'left-2 z-20 size-10 border-white/25 bg-black/55 text-white shadow-md backdrop-blur-sm hover:border-white/40 hover:bg-black/70 hover:text-white disabled:opacity-40'
+              : 'left-2',
+          ]}
+        />
+        <CarouselNext
+          class:list={[
+            'top-1/2 -translate-y-1/2',
+            isHero
+              ? 'right-2 z-20 size-10 border-white/25 bg-black/55 text-white shadow-md backdrop-blur-sm hover:border-white/40 hover:bg-black/70 hover:text-white disabled:opacity-40'
+              : 'right-2',
+          ]}
+        />
       </>
     )}
   </Carousel>

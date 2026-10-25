@@ -3,10 +3,12 @@ import type { ProductPage } from '../../data/products';
 import {
   checkoutUrlWithPlan,
   formatPlanPrice,
+  getDefaultPlan,
   getProductPlans,
 } from '../../data/productPricing';
 import Icon from '../icons/Icon.astro';
 import ProductIconWell from './ProductIconWell.astro';
+import { checkoutLinkAttrs } from '../../utils/path';
 import { Button } from '@/components/starwind/button';
 import { RadioGroup, RadioGroupItem } from '@/components/starwind/radio-group';
 
@@ -16,11 +18,15 @@ interface Props {
 
 const { product } = Astro.props;
 const plans = getProductPlans(product.slug);
-const defaultPlan = plans[0]!;
+const defaultPlan = getDefaultPlan(plans);
 const isSinglePlan = plans.length === 1;
+const buyLabel = `Buy now — ${formatPlanPrice(defaultPlan.priceUsd)}`;
+const checkoutHref = checkoutUrlWithPlan(product.buyUrl, defaultPlan.id);
+const checkoutLink = checkoutLinkAttrs(checkoutHref);
 ---
 
 <aside
+  id={`product-checkout-${product.slug}`}
   class="product-checkout text-left lg:sticky lg:top-24"
   aria-labelledby={`checkout-${product.slug}`}
   data-product-checkout
@@ -31,9 +37,9 @@ const isSinglePlan = plans.length === 1;
     <div class="card-title-band flex items-center justify-start gap-3 px-5 py-4 text-left">
       <ProductIconWell name="acqPackage" iconSize={20} class="bg-primary/15" />
       <div class="min-w-0 text-left">
-        <p class="text-xs font-medium uppercase tracking-wider text-muted-foreground">Checkout</p>
+        <p class="text-xs font-medium uppercase tracking-wider text-foreground/80">Checkout</p>
         <h2 id={`checkout-${product.slug}`} class="text-base font-semibold leading-snug">
-          {isSinglePlan ? 'Purchase option' : 'Select subscription'}
+          {isSinglePlan ? 'Purchase option' : 'Choose your duration'}
         </h2>
       </div>
     </div>
@@ -42,15 +48,26 @@ const isSinglePlan = plans.length === 1;
       <RadioGroup
         defaultValue={defaultPlan.id}
         name={`plan-${product.slug}`}
-        legend={isSinglePlan ? 'Purchase option' : 'Select subscription'}
+        legend={isSinglePlan ? 'Purchase option' : 'Choose your duration'}
         class="flex flex-col gap-2"
       >
         {
           plans.map((plan) => (
             <label class="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-border bg-background p-3.5 transition-colors has-data-checked:border-primary has-data-checked:bg-primary/10">
               <span class="flex min-w-0 items-center gap-3">
-                <RadioGroupItem value={plan.id} variant="primary" />
-                <span class="text-sm font-medium">{plan.label}</span>
+                <RadioGroupItem
+                  value={plan.id}
+                  variant="primary"
+                  aria-label={`${plan.label} — ${formatPlanPrice(plan.priceUsd)}`}
+                />
+                <span class="flex min-w-0 flex-wrap items-center gap-2">
+                  <span class="text-sm font-medium">{plan.label}</span>
+                  {plan.popular && (
+                    <span class="rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                      Popular
+                    </span>
+                  )}
+                </span>
               </span>
               <span class="shrink-0 text-sm font-semibold tabular-nums text-foreground">
                 {formatPlanPrice(plan.priceUsd)}
@@ -61,10 +78,10 @@ const isSinglePlan = plans.length === 1;
       </RadioGroup>
 
       <div class="flex items-end justify-between gap-3 border-t border-border pt-4">
-        <span class="text-xs font-medium uppercase tracking-wider text-muted-foreground">Total</span>
+        <span class="text-xs font-medium uppercase tracking-wider text-foreground/80">Total</span>
         <p class="text-right font-[family-name:var(--font-heading)] text-2xl font-bold leading-none text-primary">
           <span data-checkout-total>{formatPlanPrice(defaultPlan.priceUsd)}</span>
-          <span class="block text-sm font-medium text-muted-foreground" data-checkout-note>
+          <span class="block text-sm font-medium text-foreground/85" data-checkout-note>
             {defaultPlan.priceNote}
           </span>
         </p>
@@ -72,15 +89,31 @@ const isSinglePlan = plans.length === 1;
 
       <Button
         as="a"
-        href={checkoutUrlWithPlan(product.buyUrl, defaultPlan.id)}
+        href={checkoutHref}
         variant="primary"
         size="lg"
         class="w-full rounded-xl"
         data-checkout-buy
+        {...checkoutLink}
       >
-        Buy now
-        <Icon name="arrowRight" size={17} />
+        <span data-checkout-buy-label>{buyLabel}</span>
+        <Icon name="acqPackage" size={17} aria-hidden="true" />
       </Button>
+
+      <ul class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-foreground/85">
+        <li class="inline-flex items-center gap-1.5">
+          <Icon name="zap" size={14} class="text-primary" aria-hidden="true" />
+          Instant delivery
+        </li>
+        <li class="inline-flex items-center gap-1.5">
+          <Icon name="refresh" size={14} class="text-primary" aria-hidden="true" />
+          Free updates
+        </li>
+        <li class="inline-flex items-center gap-1.5">
+          <Icon name="messageCircle" size={14} class="text-primary" aria-hidden="true" />
+          24/7 support
+        </li>
+      </ul>
     </div>
   </div>
 </aside>
@@ -107,17 +140,25 @@ const isSinglePlan = plans.length === 1;
       const totalEl = root.querySelector('[data-checkout-total]');
       const noteEl = root.querySelector('[data-checkout-note]');
       const buyBtn = root.querySelector<HTMLAnchorElement>('[data-checkout-buy]');
+      const buyLabelEl = root.querySelector('[data-checkout-buy-label]');
       if (!group || !totalEl || !noteEl || !buyBtn) return;
+
+      const formatUsd = (n: number) => `$${n.toFixed(2)}`;
 
       const sync = () => {
         const planId = group.getAttribute('data-value') ?? plans[0]?.id;
         const plan = plans.find((p) => p.id === planId) ?? plans[0];
         if (!plan) return;
 
-        totalEl.textContent = `$${plan.priceUsd}`;
+        totalEl.textContent = formatUsd(plan.priceUsd);
         noteEl.textContent = plan.priceNote;
-        const separator = buyUrl.includes('?') ? '&' : '?';
-        buyBtn.href = `${buyUrl}${separator}plan=${plan.id}`;
+        if (buyLabelEl) buyLabelEl.textContent = `Buy now — ${formatUsd(plan.priceUsd)}`;
+        if (buyUrl.includes('levocheats.com')) {
+          buyBtn.href = buyUrl;
+        } else {
+          const separator = buyUrl.includes('?') ? '&' : '?';
+          buyBtn.href = `${buyUrl}${separator}plan=${plan.id}`;
+        }
       };
 
       group.addEventListener('click', () => window.setTimeout(sync, 0));

@@ -16,6 +16,9 @@ interface Props {
   /** Full /faq/ experience — all topics chip bar */
   variant?: 'full' | 'contextual';
   filterTopics?: FaqTopic[];
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 const {
@@ -25,9 +28,17 @@ const {
   class: className,
   variant = 'contextual',
   filterTopics: filterTopicsProp,
+  eyebrow: eyebrowProp,
+  title: titleProp,
+  subtitle: subtitleProp,
 } = Astro.props;
 
-const copy = variant === 'full' ? SITE_FAQ_SECTION_COPY : CONTEXTUAL_FAQ_SECTION_COPY;
+const defaults = variant === 'full' ? SITE_FAQ_SECTION_COPY : CONTEXTUAL_FAQ_SECTION_COPY;
+const copy = {
+  eyebrow: eyebrowProp ?? defaults.eyebrow,
+  title: titleProp ?? defaults.title,
+  subtitle: subtitleProp ?? defaults.subtitle,
+};
 const filterTopics =
   filterTopicsProp ?? (variant === 'full' ? SITE_FAQ_FILTER_TOPICS : faqFilterTopicsForItems(items));
 const showFilters = filterTopics.length > 1;
@@ -43,4 +54,5 @@ const showFilters = filterTopics.length > 1;
   showFilters={showFilters}
   filterTopics={filterTopics}
   class={className}
+  headingLevel={variant === 'full' ? 'h1' : 'h2'}
 />

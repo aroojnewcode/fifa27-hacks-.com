@@ -8,6 +8,14 @@
   line-height: 1.25;
 }
 
+.catalog-card__preview {
+  display: block;
+}
+
+.catalog-card__preview-img {
+  display: block;
+}
+
 /* Landing products header stays left-aligned with the cards */
 #products .section-header,
 #products .section-header__subtitle {

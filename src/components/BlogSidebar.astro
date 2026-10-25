@@ -1,9 +1,9 @@
 ---
 import '../styles/blog-sidebar.css';
 import Icon from './icons/Icon.astro';
-import { blogPostPath, productPath, ROUTES } from '../utils/path';
 import { checkoutPath } from '../config/checkout';
-import { t } from '../i18n';
+import { getActiveLocale, t } from '../i18n';
+import { blogPostPath, checkoutLinkAttrs, localizedHref, localizedProductPath, ROUTES } from '../utils/path';
 import type { BlogPostFull } from '../data/blog';
 import type { IconName } from './icons/types';
 import { Badge } from '@/components/starwind/badge';
@@ -16,6 +16,7 @@ interface Props {
 }
 
 const { post, related, class: className } = Astro.props;
+const locale = getActiveLocale();
 
 const tocCount = post.body.filter((b) => b.type === 'h2').length;
 
@@ -35,11 +36,11 @@ const toc = post.body
   }));
 
 const productLinks: { label: string; href: string; icon: IconName }[] = [
-  { label: 'Fortnite products', href: ROUTES.products, icon: 'sidebarHub' },
-  { label: 'Elite cheats', href: ROUTES.productsElite, icon: 'sidebarElite' },
-  { label: 'Skin Changer', href: productPath('unlock-all'), icon: 'sidebarSkin' },
-  { label: 'HWID Spoofer', href: productPath('hwid-spoofer'), icon: 'sidebarHwid' },
-  { label: 'UGC', href: productPath('ugc'), icon: 'sidebarUgc' },
+  { label: 'EA FC 27 products', href: localizedHref(ROUTES.products, locale), icon: 'sidebarHub' },
+  { label: 'Elite cheats', href: localizedHref(ROUTES.productsElite, locale), icon: 'sidebarElite' },
+  { label: 'Skin Changer', href: localizedProductPath('unlock-all', locale), icon: 'sidebarSkin' },
+  { label: 'HWID Spoofer', href: localizedProductPath('hwid-spoofer', locale), icon: 'sidebarHwid' },
+  { label: 'UGC', href: localizedProductPath('ugc', locale), icon: 'sidebarUgc' },
 ];
 ---
 
@@ -92,7 +93,7 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
         <ul class="blog-sidebar__list">
           {related.map((item) => (
             <li>
-              <a href={blogPostPath(item.slug)} class="blog-sidebar__link" title={item.title}>
+              <a href={localizedHref(blogPostPath(item.slug), locale)} class="blog-sidebar__link" title={item.title}>
                 <Icon name="arrowUpRight" size={13} class="shrink-0 opacity-70" aria-hidden="true" />
                 <span class="blog-sidebar__truncate">{item.title}</span>
               </a>
@@ -120,13 +121,14 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
     </ul>
     <Button
       as="a"
-      href={checkoutPath('fortnite')}
+      href={checkoutPath('fifa27')}
       variant="primary"
       size="sm"
       class="blog-sidebar__cta mt-2.5 w-full min-w-0 justify-start"
       aria-label={t.ui.checkoutAria}
+      {...checkoutLinkAttrs(checkoutPath('fifa27'))}
     >
-      <span class="truncate">Buy Fortnite Cheats</span>
+      <span class="truncate">Buy EA FC 27 Hacks & Cheats</span>
       <Icon name="arrowRight" size={16} class="shrink-0" />
     </Button>
   </section>

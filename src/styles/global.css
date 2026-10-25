@@ -37,6 +37,10 @@
   color: var(--primary);
 }
 
+html.dark .section-header__eyebrow {
+  color: #7eb0ff;
+}
+
 .section-header__title {
   margin: 0;
   font-family: var(--font-heading, ui-sans-serif, system-ui, sans-serif);

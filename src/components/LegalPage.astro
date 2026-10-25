@@ -3,25 +3,33 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Icon from './icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
 import { Prose } from '@/components/starwind/prose';
-import { ROUTES } from '../utils/path';
+import { localizedHref, ROUTES } from '../utils/path';
 
-interface Props {
+interface LegalContent {
   title: string;
   description: string;
-  breadcrumbLabel: string;
   sections: { heading: string; paragraphs: string[] }[];
 }
 
-const { title, description, breadcrumbLabel, sections } = Astro.props;
+interface Props {
+  content: LegalContent;
+  breadcrumbLabel?: string;
+  locale: string;
+}
+
+const { content, breadcrumbLabel, locale } = Astro.props;
+const { title, description, sections } = content;
+const crumbLabel = breadcrumbLabel ?? title;
 ---
 
 <article class="py-8 md:py-12">
   <div class="mx-auto max-w-3xl px-5">
     <div class="text-left">
     <Breadcrumbs
+      locale={locale}
       items={[
         { name: 'Home', path: '/' },
-        { name: breadcrumbLabel, path: Astro.url.pathname },
+        { name: crumbLabel, path: Astro.url.pathname },
       ]}
     />
     </div>
@@ -42,11 +50,11 @@ const { title, description, breadcrumbLabel, sections } = Astro.props;
     </Prose>
 
     <div class="mt-12 flex flex-wrap justify-center gap-3 border-t border-border pt-8">
-      <Button as="a" href={ROUTES.support} variant="primary" size="sm">
+      <Button as="a" href={localizedHref(ROUTES.support, locale)} variant="primary" size="sm">
         Contact support
         <Icon name="mail" size={16} />
       </Button>
-      <Button as="a" href={ROUTES.home} variant="outline" size="sm">Back to home</Button>
+      <Button as="a" href={localizedHref(ROUTES.home, locale)} variant="outline" size="sm">Back to home</Button>
     </div>
   </div>
 </article>

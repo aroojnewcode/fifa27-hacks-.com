@@ -29,10 +29,10 @@ function link(text: string, href: string): string {
   return `<a href="${normalizeInternalPath(href)}">${text}</a>`;
 }
 
-const elite = link('Fortnite Elite', productPath('elite'));
+const elite = link('EA FC 27 Elite', productPath('elite'));
 const lite = link('Lite tier (ESP wallhack & ESP)', ROUTES.products);
 const pro = link('Pro tier (scripts included)', ROUTES.products);
-const productsHub = link('Fortnite products', ROUTES.products);
+const productsHub = link('EA FC 27 products', ROUTES.products);
 const hwid = link('HWID Spoofer', productPath('hwid-spoofer'));
 const ugc = link('UGC', productPath('ugc'));
 const skin = link('Skin Changer', productPath('unlock-all'));
@@ -44,21 +44,21 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'status',
     topic: 'setup',
     icon: 'faqStatus',
-    q: 'Where do I check if Fortnite cheats are online?',
-    a: a('The live status banner is on fortnite-cheats.com and in the Discord #status channel. Always check after a Fortnite or EAC update.'),
+    q: 'Where do I check if EA FC 27 hacks are online?',
+    a: a('The live status banner is on fifa27hacks.com and in the Discord #status channel. Always check after a EA FC 27 or EAC update.'),
   },
   {
     id: 'after-buy',
     topic: 'setup',
     icon: 'faqAfterBuy',
     q: 'What happens after I buy?',
-    a: a('Your portal unlocks the loader, setup guide and config library via our secure checkout. Follow the guide before launching Fortnite.'),
+    a: a('Your portal unlocks the loader, setup guide and config library via our secure checkout. Follow the guide before launching EA FC 27.'),
   },
   {
     id: 'ban-risk',
     topic: 'safety',
     icon: 'faqBanRisk',
-    q: 'Can I get banned using third-party fortnite cheats?',
+    q: 'Can I get banned using third-party EA FC 27 hacks?',
     a: a('Yes—any modification carries risk. EAC and report systems evolve. Read current status and accept the risk before use.'),
   },
   {
@@ -66,7 +66,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'setup',
     icon: 'faqPlatforms',
     q: 'Which platforms are supported?',
-    a: a('Fortnite via Epic Games Launcher on Windows 10/11 64-bit only. macOS and Linux are not supported.'),
+    a: a('EA FC 27 via EA App on Windows 10/11 64-bit only. macOS and Linux are not supported.'),
   },
   {
     id: 'license-move',
@@ -86,7 +86,7 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'what-is-esp',
     topic: 'esp',
     icon: 'faqWhatIsEsp',
-    q: 'What is Fortnite ESP wallhack / ESP?',
+    q: 'What is EA FC 27 ESP wallhack / ESP?',
     a: `ESP wallhack and player ESP show enemy positions, chests, loot and POI camps through storm circle. ${lite} covers awareness overlays. ${pro} and ${elite} add script modules on top.`,
     scopes: ['lite', 'pro', 'elite'],
   },
@@ -139,7 +139,7 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'undetected',
     topic: 'safety',
     icon: 'faqUndetected',
-    q: 'Are undetected Fortnite cheats guaranteed?',
+    q: 'Are undetected EA FC 27 hacks guaranteed?',
     a: a('No. Undetected is current status on the product page—not a permanent guarantee. Stop if the build shows updating, testing, or detected.'),
   },
   {
@@ -154,7 +154,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'products',
     icon: 'faqHwidWhen',
     q: 'When do I need the HWID Spoofer?',
-    a: `Use ${hwid} when fresh Epic accounts fail instantly on one PC but work elsewhere—hardware enforcement. Not for account-only EAC cases; see ${ugc} instead.`,
+    a: `Use ${hwid} when fresh EA accounts fail instantly on one PC but work elsewhere—hardware enforcement. Not for account-only EAC cases; see ${ugc} instead.`,
     scopes: ['hwid-spoofer'],
   },
   {
@@ -162,7 +162,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'products',
     icon: 'faqUgcWhat',
     q: 'What is UGC?',
-    a: `${ugc} (Unban & Governance Control) is an appeal workspace for Epic account restrictions and EAC bans—custom workflows and case tracking, not a guaranteed unban service.`,
+    a: `${ugc} (Unban & Governance Control) is an appeal workspace for EA account restrictions and EAC bans—custom workflows and case tracking, not a guaranteed unban service.`,
     scopes: ['ugc'],
   },
   {
@@ -177,15 +177,15 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'external-loader',
     topic: 'products',
     icon: 'faqExternalLoader',
-    q: 'Is the loader injected into the Epic Games folder?',
-    a: `Fortnite Cheats runs external with cloud config sync—no files injected into the Fortnite directory. EAC risk still applies. See ${productsHub}.`,
+    q: 'Is the loader injected into the EA App folder?',
+    a: `EA FC 27 Hacks & Cheats runs external with cloud config sync—no files injected into the EA FC 27 directory. EAC risk still applies. See ${productsHub}.`,
   },
   {
     id: 'blog-vs-cheats',
     topic: 'blog',
     icon: 'faqBlogVsCheats',
     q: 'Are blog cheat codes the same as ranked cheats?',
-    a: `No. Blog articles about Epic console commands apply only in custom lobbies with cheats enabled. Ranked fortnite cheats are separate products—see ${lite}, ${pro} and ${elite}.`,
+    a: `No. Blog articles about Epic console commands apply only in custom lobbies with cheats enabled. Ranked EA FC 27 hacks are separate products—see ${lite}, ${pro} and ${elite}.`,
   },
   {
     id: 'blog-setup',
@@ -214,7 +214,7 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'plans',
     icon: 'faqWhoPro',
     q: 'Who should buy Pro?',
-    a: `Ranked players who want Aimbot, Smooth Aim and Hotkey macros with ESP wallhack included. Pro is the most popular tier at fortnite-cheats.com.`,
+    a: `Ranked players who want Aimbot, Smooth Aim and Hotkey macros with ESP wallhack included. Pro is the most popular tier at fifa27hacks.com.`,
     scopes: ['pro'],
   },
   {
@@ -230,21 +230,21 @@ export const siteFaqs: SiteFaqItem[] = [
     topic: 'safety',
     icon: 'faqEacUpdate',
     q: 'What should I do after a EAC update?',
-    a: a('Check fortnite-cheats.com status and Discord #status. Do not launch until the banner shows online. Load conservative presets after any patch.'),
+    a: a('Check fifa27hacks.com status and Discord #status. Do not launch until the banner shows online. Load conservative presets after any patch.'),
   },
   {
     id: 'discord-help',
     topic: 'setup',
     icon: 'faqDiscordHelp',
     q: 'How do I get install help?',
-    a: a('Open Discord after purchase with your order email, Windows version and Fortnite client build. Staff walk through loader setup live.'),
+    a: a('Open Discord after purchase with your order email, Windows version and EA FC 27 client build. Staff walk through loader setup live.'),
   },
   {
     id: 'zero-build-ranked',
     topic: 'plans',
     icon: 'faqZoomRanked',
-    q: 'Do tiers work in Zero Build and ranked?',
-    a: `Yes—${lite}, ${pro} and ${elite} include Zero Build and ranked presets in the portal. Tune distance caps and script delay before your first queue.`,
+    q: 'Do tiers work in Career Mode and ranked?',
+    a: `Yes—${lite}, ${pro} and ${elite} include Career Mode and ranked presets in the portal. Tune distance caps and script delay before your first queue.`,
   },
   {
     id: 'zoom-hack',
@@ -266,8 +266,8 @@ export const siteFaqs: SiteFaqItem[] = [
     id: 'private-cheats',
     topic: 'safety',
     icon: 'faqPrivateCheats',
-    q: 'What are private Fortnite cheats?',
-    a: a('Private means per-user keys and maintained builds—not public zip packs. Fortnite Cheats ships portal delivery for ESP, aimbot and ESP wallhack tiers.'),
+    q: 'What are private EA FC 27 hacks?',
+    a: a('Private means per-user keys and maintained builds—not public zip packs. EA FC 27 Hacks & Cheats ships portal delivery for ESP, aimbot and ESP wallhack tiers.'),
   },
   {
     id: 'faq-more',
@@ -291,7 +291,7 @@ export function getAllFaqs(): SiteFaqItem[] {
 /** Shared FAQ block copy + filters (home, /faq/, products, blog). */
 export const SITE_FAQ_SECTION_COPY = {
   eyebrow: 'All topics',
-  title: 'Fortnite cheats FAQ',
+  title: 'EA FC 27 hacks FAQ',
   subtitle: 'Filter by cheat plans, ESP wallhack, aimbot, products, setup and guides.',
 } as const;
 
@@ -309,11 +309,12 @@ export const SITE_FAQ_FILTER_TOPICS: FaqTopic[] = [
 /** Section copy when FAQ list is scoped to the current page (not /faq/). */
 export const CONTEXTUAL_FAQ_SECTION_COPY = {
   eyebrow: 'Cheat FAQ',
-  title: 'Fortnite cheats questions',
+  title: 'EA FC 27 hacks questions',
   subtitle: 'Straight answers on aimbot, ESP, bans and setup — see the full FAQ for every topic.',
 } as const;
 
-export function faqFilterTopicsForItems(items: SiteFaqItem[]): FaqTopic[] {
+export function faqFilterTopicsForItems(items: SiteFaqItem[] | undefined): FaqTopic[] {
+  if (!items?.length) return ['all'];
   const present = new Set(items.map((item) => item.topic));
   const topics: FaqTopic[] = ['all'];
   for (const topic of SITE_FAQ_FILTER_TOPICS) {
@@ -353,7 +354,7 @@ const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
       topic: 'blog',
       icon: 'faqBlogGuideStart',
       q: 'Should I use console cheat codes in ranked?',
-      a: a('No. Creative lobby cheat codes only work in custom games with cheats enabled. Ranked requires separate fortnite cheats from fortnite-cheats.com tiers.'),
+      a: a('No. Creative lobby cheat codes only work in custom games with cheats enabled. Ranked requires separate EA FC 27 hacks from fifa27hacks.com tiers.'),
     },
     {
       id: 'blog-guide-tier',
@@ -383,7 +384,7 @@ const blogTopicFaqs: Record<string, SiteFaqItem[]> = {
       topic: 'blog',
       icon: 'faqBlogSetupLobby',
       q: 'Should I test in a lobby first?',
-      a: a('Yes. Load conservative presets in a lobby or Zero Build before ranked. Tune script delay and ESP distance caps over several sessions.'),
+      a: a('Yes. Load conservative presets in a lobby or Career Mode before ranked. Tune script delay and ESP distance caps over several sessions.'),
     },
   ],
   Security: [
@@ -417,7 +418,7 @@ const defaultBlogFaqs: SiteFaqItem[] = [
     topic: 'blog',
     icon: 'faqBlogDefault3',
     q: 'Will settings in this article work next patch?',
-    a: a('Re-check status after every Fortnite update. Portal presets update with patch notes—reload configs instead of copying old sliders.'),
+    a: a('Re-check status after every EA FC 27 update. Portal presets update with patch notes—reload configs instead of copying old sliders.'),
   },
 ];
 

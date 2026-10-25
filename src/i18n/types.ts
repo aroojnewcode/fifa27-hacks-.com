@@ -250,6 +250,16 @@ export interface Translations {
       description: string;
     };
   };
+  forum: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    categoriesLabel: string;
+    latestLabel: string;
+    fromBlogLabel: string;
+    readThread: string;
+    backToForum: string;
+  };
   ui: {
     skipLink: string;
     browseCheats: string;
@@ -261,5 +271,11 @@ export interface Translations {
     menuClose: string;
     themeLight: string;
     themeDark: string;
+    breadcrumbHome: string;
+    breadcrumbBlog: string;
+    breadcrumbForum: string;
+    breadcrumbFaq: string;
+    breadcrumbProducts: string;
+    backToHome: string;
   };
 }

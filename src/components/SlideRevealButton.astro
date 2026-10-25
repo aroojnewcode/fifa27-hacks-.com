@@ -1,6 +1,7 @@
 ---
 import Icon from './icons/Icon.astro';
 import type { IconName } from './icons/types';
+import { checkoutLinkAttrs, isExternalHref } from '../utils/path';
 
 interface Props {
   href: string;
@@ -10,9 +11,15 @@ interface Props {
 }
 
 const { href, class: className, ariaLabel, icon = 'arrowRight' } = Astro.props;
+const outbound = isExternalHref(href) ? checkoutLinkAttrs(href) : {};
 ---
 
-<a href={href} class:list={['slide-reveal-btn', className]} aria-label={ariaLabel}>
+<a
+  href={href}
+  class:list={['slide-reveal-btn', className]}
+  aria-label={ariaLabel}
+  {...outbound}
+>
   <span class="slide-reveal-btn__icon" aria-hidden="true">
     <Icon name={icon} size={18} class="slide-reveal-btn__svg" />
   </span>

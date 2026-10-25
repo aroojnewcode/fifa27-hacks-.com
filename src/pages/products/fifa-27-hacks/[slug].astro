@@ -1,0 +1,12 @@
+---
+import { DEFAULT_LOCALE } from '../../../i18n/locales';
+import { localePath } from '../../../i18n/paths';
+import { getAllProductSlugs } from '../../../data/products';
+
+export function getStaticPaths() {
+  return getAllProductSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug ?? '';
+return Astro.redirect(localePath(`/products/fifa-27-hacks/${slug}/`, DEFAULT_LOCALE), 301);
+---

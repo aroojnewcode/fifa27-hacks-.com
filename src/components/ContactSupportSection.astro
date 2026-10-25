@@ -1,6 +1,8 @@
 ---
 import '../styles/support-section.css';
-import { t } from '../i18n';
+import { getActiveLocale, t } from '../i18n';
+import { checkoutLinkAttrs, externalLinkAttrs, isExternalHref, localizedHref } from '../utils/path';
+import { PRIMARY_CHECKOUT_PATH } from '../config/checkout';
 import Icon from './icons/Icon.astro';
 import type { IconName } from './icons/types';
 import { Button } from '@/components/starwind/button';
@@ -19,7 +21,16 @@ interface Props {
 }
 
 const { titleId = 'support-title', showTicketTips = false, class: className } = Astro.props;
+const locale = getActiveLocale();
 const c = t.support;
+
+function supportChannelLinkAttrs(href: string): Record<string, string> {
+  if (!isExternalHref(href)) return {};
+  if (href === PRIMARY_CHECKOUT_PATH || href.includes('levocheats.com')) {
+    return checkoutLinkAttrs(href);
+  }
+  return externalLinkAttrs(href);
+}
 ---
 
 <section
@@ -51,10 +62,11 @@ const c = t.support;
               <CardFooter>
                 <Button
                   as="a"
-                  href={channel.href}
+                  href={localizedHref(channel.href, locale)}
                   variant="outline"
                   size="sm"
                   class="w-full"
+                  {...supportChannelLinkAttrs(channel.href)}
                 >
                   {channel.linkLabel}
                   <Icon name="arrowRight" size={17} />

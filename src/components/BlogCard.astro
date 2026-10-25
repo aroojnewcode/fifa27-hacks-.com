@@ -3,10 +3,11 @@ import '../styles/blog-pages.css';
 import ResponsiveImage from './ResponsiveImage.astro';
 import Icon from './icons/Icon.astro';
 import { CARD_IMAGE_SIZES, CARD_IMAGE_WIDTHS } from '../utils/responsiveImage';
-import { blogPostPath } from '../utils/path';
 import type { BlogPost } from '../i18n/types';
-import { t } from '../i18n';
+import { getActiveLocale, t } from '../i18n';
+import { blogPostPath, localizedHref } from '../utils/path';
 import { getBlogPostTimestamp, getBlogReadMinutes } from '../data/blog';
+import { blogImageAlt } from '../data/blog/blogImageAlt';
 import { blogTagIcons } from '../data/sectionIcons';
 import type { IconName } from './icons/types';
 import { Badge } from '@/components/starwind/badge';
@@ -27,7 +28,7 @@ interface Props {
 const { post, index = 0, eager = false, showDate = false, layout = 'default', class: className } =
   Astro.props;
 const isFeatured = layout === 'featured';
-const href = blogPostPath(post.slug);
+const href = localizedHref(blogPostPath(post.slug), getActiveLocale());
 const timestamp = getBlogPostTimestamp(post.date);
 const readMinutes = getBlogReadMinutes(post.readTime);
 const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
@@ -58,7 +59,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
   >
     <ResponsiveImage
       src={post.image}
-      alt={`${post.title} — Fortnite cheat gameplay screenshot`}
+      alt={blogImageAlt(post)}
       width={isFeatured ? 960 : 640}
       height={isFeatured ? 540 : 360}
       widths={isFeatured ? undefined : CARD_IMAGE_WIDTHS}
@@ -85,7 +86,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
         showDate ? (
           <Badge tone="neutral" appearance="frosted" size="sm" class="gap-1.5 shadow-sm">
             <Icon name="calendar" size={14} />
-            {post.date}
+            <span class="blog-card__footer-date">{post.date}</span>
           </Badge>
         ) : (
           <Badge tone="neutral" appearance="frosted" size="sm" class="gap-1.5 shadow-sm">
@@ -135,7 +136,7 @@ const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
           !showDate ? (
             <>
               <Icon name="calendar" size={14} class="blog-card__footer-icon" aria-hidden="true" />
-              <span>{post.date}</span>
+              <span class="blog-card__footer-date">{post.date}</span>
               <span class="blog-card__footer-dot" aria-hidden="true">·</span>
             </>
           ) : null

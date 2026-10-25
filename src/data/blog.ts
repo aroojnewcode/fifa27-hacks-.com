@@ -1,7 +1,15 @@
 export type { BlogBlock, BlogPostFull } from './blog/types';
-export { blogPosts } from './blog/posts';
 
-import { blogPosts } from './blog/posts';
+import { blogPosts as rawBlogPosts } from './blog/posts';
+import { resolveBlogPostImagePath } from './blog/blogImageAlt';
+import { blogSeoTitleForSlug } from './blog/seoTitles';
+
+/** Normalize hero images to EA FC 27 gameplay shots (see BLOG_POST_GAMEPLAY_FILE). */
+export const blogPosts = rawBlogPosts.map((post) => ({
+  ...post,
+  image: resolveBlogPostImagePath(post.slug),
+  seoTitle: blogSeoTitleForSlug(post.slug, post.title),
+}));
 
 export function getBlogPost(slug: string) {
   return blogPosts.find((p) => p.slug === slug);

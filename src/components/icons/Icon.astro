@@ -14,9 +14,13 @@ const { name, size = 20, class: className = '', strokeWidth = 1.75 } = Astro.pro
 const LucideIcon = iconRegistry[name];
 ---
 
+{
+  !LucideIcon ? null : (
 <LucideIcon
   size={size}
   stroke-width={strokeWidth}
   class:list={['icon-app', 'shrink-0', className]}
   aria-hidden="true"
 />
+  )
+}

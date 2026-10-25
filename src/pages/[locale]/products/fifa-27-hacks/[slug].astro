@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getAllProductSlugs, getProductPage, productHub } from '../../../../data/products';
+import { resolvePageSeo } from '../../../../config/seo';
+import { breadcrumbSchema, productSchema } from '../../../../utils/schema';
+import ProductDetail from '../../../../components/ProductDetail.astro';
+import { initLocalePage, pathsWithLocale } from '../../../../i18n/page';
+import { localePath } from '../../../../i18n/paths';
+
+export function getStaticPaths() {
+  return pathsWithLocale(() => getAllProductSlugs().map((slug) => ({ slug })));
+}
+
+const locale = initLocalePage(Astro);
+const { slug } = Astro.params;
+const product = getProductPage(slug!, locale);
+
+if (!product) {
+  return Astro.redirect(localePath(productHub.path, locale));
+}
+
+const pagePath = `${productHub.path}${product.slug}/`;
+const seo = resolvePageSeo(localePath(pagePath, locale));
+const metaTitle = seo.title;
+const metaDescription = seo.description;
+const breadcrumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Products', path: productHub.path },
+  { name: product.title, path: pagePath },
+];
+---
+
+<BaseLayout locale={locale}
+  title={metaTitle}
+  description={metaDescription}
+  jsonLd={[
+    productSchema({
+      name: product.title,
+      description: metaDescription,
+      url: pagePath,
+      offerUrl: product.buyUrl,
+      image: product.images[0]?.src,
+      sku: product.slug,
+      productSlug: product.slug,
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <ProductDetail product={product} breadcrumbs={breadcrumbs} locale={locale} />
+</BaseLayout>

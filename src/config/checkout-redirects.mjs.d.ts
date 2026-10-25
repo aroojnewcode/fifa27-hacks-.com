@@ -1,5 +1,7 @@
+export declare const LEVO_FC27_CHECKOUT: string;
+
 export declare const CHECKOUT_URLS: {
-  readonly fortnite: string;
+  readonly fifa27: string;
   readonly skinChanger: string;
   readonly hwidSpoofer: string;
   readonly ugc: string;

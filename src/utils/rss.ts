@@ -1,4 +1,6 @@
 import { blogPosts } from '../data/blog';
+import { DEFAULT_LOCALE } from '../i18n/locales';
+import { localePath } from '../i18n/paths';
 import { RSS_FEED_PATH, SITE_ORIGIN, absoluteAssetUrl, canonicalUrl } from '../config/seo';
 import { parseBlogDate } from './schema';
 import { blogPostPath } from './path';
@@ -16,7 +18,7 @@ export function buildRssFeed(): string {
   const feedUrl = `${SITE_ORIGIN}${RSS_FEED_PATH}`;
   const items = blogPosts
     .map((post) => {
-      const link = canonicalUrl(blogPostPath(post.slug));
+      const link = canonicalUrl(localePath(blogPostPath(post.slug), DEFAULT_LOCALE));
       const pubDate = new Date(parseBlogDate(post.date)).toUTCString();
       return `
     <item>
@@ -33,9 +35,9 @@ export function buildRssFeed(): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Fortnite Cheats Blog</title>
-    <link>${SITE_ORIGIN}/blog/</link>
-    <description>Fortnite cheat guides, patch notes, and setup walkthroughs from fortnite-cheats.com.</description>
+    <title>EA FC 27 Hacks & Cheats Blog</title>
+    <link>${SITE_ORIGIN}${localePath('/blog/', DEFAULT_LOCALE)}</link>
+    <description>EA FC 27 hack guides, patch notes, and setup walkthroughs from fifa27hacks.com.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />

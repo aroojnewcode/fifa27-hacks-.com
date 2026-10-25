@@ -1,4 +1,4 @@
-export const HERO_AUTOPLAY_MS = 4800;
+export const HERO_AUTOPLAY_MS = 5000;
 
 type EmblaApi = {
   selectedScrollSnap: () => number;
@@ -65,6 +65,23 @@ function bindHeroDots(wrapper: HTMLElement, api: EmblaApi, autoplay: AutoplayPlu
   setActive();
 }
 
+function bindHeroNav(wrapper: HTMLElement, autoplay: AutoplayPlugin) {
+  const resetAutoplay = () => {
+    autoplay.reset?.();
+    autoplay.play();
+  };
+
+  wrapper
+    .querySelectorAll<HTMLButtonElement>(
+      '[data-sw-carousel-previous], [data-sw-carousel-next], [data-slot="carousel-previous"], [data-slot="carousel-next"]',
+    )
+    .forEach(
+    (button) => {
+      button.addEventListener('click', resetAutoplay);
+    },
+  );
+}
+
 async function initHeroCarousels(root: ParentNode = document) {
   const nodes = [...root.querySelectorAll<HTMLElement>('[data-hero-embla]')].filter(
     (node) => node.dataset.heroEmblaReady !== 'true',
@@ -99,6 +116,7 @@ async function initHeroCarousels(root: ParentNode = document) {
     });
 
     bindHeroDots(wrapper as HTMLElement, instance.api as EmblaApi, autoplay);
+    bindHeroNav(wrapper as HTMLElement, autoplay);
 
     if (reducedMotion) {
       autoplay.stop();

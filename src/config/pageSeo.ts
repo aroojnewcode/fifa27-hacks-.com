@@ -1,93 +1,95 @@
-/**
- * Central titles/descriptions for high-traffic routes.
- * After Search Console shows impressions, edit the matching path here and redeploy.
- */
-
 export interface PageSeoEntry {
   title: string;
   description: string;
 }
 
+/** Path without locale prefix, trailing slash (e.g. `/faq/`). English overrides only. */
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Buy Undetected Fortnite Cheats | Aimbot, ESP & Wallhack',
+    title: 'EA FC 27 Hacks for PC | Auto Green & FUT',
     description:
-      'Buy undetected Fortnite cheats for PC — aimbot, ESP, wallhack, radar, loot ESP and skin changer. Updated after every Easy Anti-Cheat patch.',
+      'Buy undetected EA FC 27 hacks for PC: auto green, pitch overlay, FUT snipe assist and Icon Unlocker. Updated after every EA AntiCheat patch.',
   },
-  '/products/fortnite-cheats/': {
-    title: 'Buy Fortnite Cheats | Elite, HWID Spoofer & Skin Changer',
+  '/products/fifa-27-hacks/': {
+    title: 'Buy EA FC 27 Hacks | Lite, Pro, Elite & Utilities',
     description:
-      'Shop Fortnite cheats for PC: Elite aimbot & ESP wallhack, HWID spoofer, UGC recovery and Skin Changer. Instant delivery after checkout.',
+      'Compare Lite, Pro and Elite EA FC 27 hack tiers plus HWID Spoofer, UGC and Icon Unlocker. Secure checkout and Windows loader.',
   },
-  '/products/fortnite-cheats/elite/': {
-    title: 'Buy Fortnite Elite Cheats | Aimbot, ESP & Loot Assist',
+  '/products/fifa-27-hacks/lite/': {
+    title: 'EA FC 27 Lite Hacks | Pitch Overlay & Radar PC',
     description:
-      'Buy Fortnite Elite cheats with aimbot, ESP wallhack, loot assist, Auto Finish, Skin Changer and priority EAC patch updates.',
+      'EA FC 27 Lite hacks: pitch overlay, mini-pitch radar and stream-proof ESP for Division Rivals and Career Mode. From $15/week.',
   },
-  '/products/fortnite-cheats/hwid-spoofer/': {
-    title: 'Buy Fortnite HWID Spoofer | Hardware Ban Bypass',
+  '/products/fifa-27-hacks/pro/': {
+    title: 'EA FC 27 Pro Hacks | Auto Green & FUT Tools',
     description:
-      'Buy a Fortnite HWID spoofer for PC hardware bans — disk/MAC tools, compatibility scan and post-spoof checks before you launch cheats again.',
+      'EA FC 27 Pro hacks add auto green, perfect timed shots and FUT snipe assist on top of Lite overlay and radar. From $35/month.',
   },
-  '/products/fortnite-cheats/ugc/': {
-    title: 'Buy Fortnite UGC | EAC & Epic Ban Appeal Tools',
+  '/products/fifa-27-hacks/elite/': {
+    title: 'EA FC 27 Elite Hacks | Full Module Stack PC',
     description:
-      'Buy Fortnite UGC (Unban & Governance Control) to organize Epic and EAC ban appeals, dispute workflows and case tracking.',
+      'EA FC 27 Elite hacks — every module, priority patches and limited slots. Lifetime $150 or $35/month via secure checkout.',
   },
-  '/products/fortnite-cheats/unlock-all/': {
-    title: 'Buy Fortnite Skin Changer | Unlock All Cosmetics',
+  '/products/fifa-27-hacks/hwid-spoofer/': {
+    title: 'EA FC 27 HWID Spoofer | After EAC Hardware Ban',
     description:
-      'Buy Fortnite Skin Changer / Unlock All — local outfit, wrap and pickaxe previews with your Fortnite cheats loadout.',
+      'HWID Spoofer for EA FC 27 on PC — disk, MAC and GPU cleanup when EA AntiCheat flags your machine. Portal verification included.',
   },
-  '/products/fortnite-cheats/utilities/': {
-    title: 'Buy Fortnite Cheat Utilities | HWID, UGC & Skin Changer',
+  '/products/fifa-27-hacks/ugc/': {
+    title: 'EA FC 27 UGC Unban Tools | Appeals & Recovery',
     description:
-      'Buy Fortnite cheat utilities: HWID spoofer after hardware bans, UGC for Epic/EAC appeals, and local Skin Changer / Unlock All.',
+      'UGC appeal workflows for EA FC 27 account restrictions and EAC holds. Documentation and status tracking — one-time $50 access.',
+  },
+  '/products/fifa-27-hacks/unlock-all/': {
+    title: 'EA FC 27 Icon Unlocker | Kits & Cosmetics Local',
+    description:
+      'Icon Unlocker / Skin Changer for EA FC 27 — preview kits, badges and cosmetics locally on your PC display. Cosmetic-only module.',
+  },
+  '/products/fifa-27-hacks/utilities/': {
+    title: 'EA FC 27 Utilities | HWID, UGC & Icon Unlocker',
+    description:
+      'HWID Spoofer, UGC recovery and Icon Unlocker utilities for EA FC 27 PC players. Compare features and checkout securely.',
   },
   '/blog/': {
-    title: 'Fortnite Cheat Guides | Aimbot, ESP Wallhack & EAC',
+    title: 'EA FC 27 Hacks Blog | Guides, Patches & Setup',
     description:
-      'Read Fortnite cheat guides on aimbot setup, ESP wallhack, Lite vs Pro, Creative practice and Easy Anti-Cheat patch-day checks.',
+      'EA FC 27 hack guides: auto green, pitch overlay, HWID after ban, stream-proof overlays and EA AntiCheat patch-day checklists.',
   },
   '/forum/': {
-    title: 'Fortnite Cheats Forum | Aimbot, ESP & Setup Help',
+    title: 'EA FC 27 Hacks Forum | Setup, Patches & Tier Help',
     description:
-      'Fortnite cheats forum for aimbot configs, ESP wallhack setup, EAC status and product questions before you buy.',
+      'Community forum for EA FC 27 hacks — loader setup, tier picks, patch-day status and FUT/Career Mode questions.',
   },
   '/faq/': {
-    title: 'Fortnite Cheats FAQ | Aimbot, ESP, Bans & Setup',
+    title: 'EA FC 27 Hacks FAQ | Undetected, Bans & Loader',
     description:
-      'Fortnite cheats FAQ — tiers, aimbot, ESP wallhack, radar, HWID spoofer, Skin Changer, bans and loader setup before checkout.',
-  },
-  '/terms/': {
-    title: 'Terms for Fortnite Cheats | License & Refunds',
-    description:
-      'Terms for buying Fortnite cheats on fortnite-cheats.com — license use, delivery, refunds and account risk.',
-  },
-  '/privacy/': {
-    title: 'Privacy Policy | Fortnite Cheats Shop',
-    description:
-      'How the Fortnite cheats shop at fortnite-cheats.com uses analytics, cookies and contact data.',
-  },
-  '/about/': {
-    title: 'About Fortnite Cheats | Buy PC Aimbot & ESP',
-    description:
-      'About Fortnite Cheats — we sell PC Fortnite cheats (aimbot, ESP, wallhack), guides and utilities at fortnite-cheats.com.',
+      'Answers on undetected EA FC 27 hacks, EA AntiCheat risk, supported platforms, HWID resets and what happens after checkout.',
   },
   '/support/': {
-    title: 'Fortnite Cheats Support | Loader, HWID & Checkout',
+    title: 'EA FC 27 Hacks & Cheats Support | Loader, HWID & Checkout',
     description:
-      'Fortnite cheats support for loader setup, aimbot/ESP configs, HWID spoofing and checkout help — 24/7 Discord.',
+      'EA FC 27 hacks support for loader setup, HWID spoofing and checkout help at fifa27hacks.com.',
+  },
+  '/about/': {
+    title: 'About EA FC 27 Hacks Shop | fifa27hacks.com',
+    description:
+      'About fifa27hacks.com — PC EA FC 27 hacks, FUT tools, patch guides and secure checkout for Lite, Pro and Elite.',
+  },
+  '/privacy/': {
+    title: 'Privacy Policy | EA FC 27 Hacks Shop',
+    description:
+      'Privacy policy for fifa27hacks.com: analytics, cookies, checkout partners and how we handle support emails.',
+  },
+  '/terms/': {
+    title: 'Terms & Conditions | EA FC 27 Hacks',
+    description:
+      'Terms for EA FC 27 hack purchases at fifa27hacks.com — refunds, EAC risk, acceptable use and loader license.',
   },
 };
 
-export function normalizeSeoPath(pathname: string): string {
-  let path = pathname || '/';
-  if (!path.startsWith('/')) path = `/${path}`;
-  if (path !== '/' && !path.endsWith('/')) path = `${path}/`;
-  return path;
-}
-
-export function getPageSeoEntry(pathname: string): PageSeoEntry | undefined {
-  return PAGE_SEO[normalizeSeoPath(pathname)];
+export function getPageSeoEntry(path: string): PageSeoEntry | undefined {
+  let normalized = path || '/';
+  if (!normalized.startsWith('/')) normalized = `/${normalized}`;
+  if (normalized !== '/' && !normalized.endsWith('/')) normalized = `${normalized}/`;
+  return PAGE_SEO[normalized];
 }
