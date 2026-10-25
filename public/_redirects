@@ -30,12 +30,6 @@
 /go/ugc  https://levocheats.com/go/UROOJ?to=%2Ffc-27-cheats  302
 /go/ugc/  https://levocheats.com/go/UROOJ?to=%2Ffc-27-cheats  302
 
-/nl/*  /en/:splat  301
-/tr/*  /en/:splat  301
-/pl/*  /en/:splat  301
-/pt/*  /en/:splat  301
-/id/*  /en/:splat  301
-
 # Legacy paths → English locale routes
 /contact  /en/support/  301
 /contact/  /en/support/  301
