@@ -16,7 +16,8 @@
     "astro": "astro",
     "optimize:images": "node scripts/optimize-images.mjs",
     "gameplay:install": "node scripts/install-fc27-gameplay-from-assets.mjs && node scripts/sync-blog-pngs-from-gameplay.mjs && npm run optimize:images",
-    "i18n:sync": "tsx scripts/sync-i18n.mjs"
+    "i18n:sync": "tsx scripts/sync-i18n.mjs",
+    "postinstall": "node scripts/cloudflare-postinstall.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

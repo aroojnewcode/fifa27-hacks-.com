@@ -16,6 +16,6 @@ npm run deploy   # build + wrangler (Cloudflare Workers static assets)
 | Setting | Value |
 |--------|--------|
 | **Build command** (optional if deploy runs build) | `npm ci` |
-| **Deploy command** | `npm run deploy` |
+| **Deploy command** | `npm run deploy` (preferred) or `npx wrangler deploy` |
 
-Do **not** use `npx wrangler deploy` alone — it fails with “Could not detect a directory containing static files” when `dist/` is missing.
+If the dashboard only runs `npx wrangler deploy`, `postinstall` builds `dist/` on Cloudflare’s `buildhome` CI so Wrangler can upload assets. Prefer **`npm run deploy`** so build and deploy stay in one explicit step.
