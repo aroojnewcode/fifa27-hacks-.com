@@ -2,7 +2,12 @@
 import type { IconName } from './icons/types';
 import Icon from './icons/Icon.astro';
 import { checkoutLinkAttrs } from '../utils/path';
-import { CARD_IMAGE_SIZES, CARD_IMAGE_WIDTHS, responsiveSrcSet } from '../utils/responsiveImage';
+import {
+  CARD_IMAGE_SIZES,
+  CARD_IMAGE_WIDTHS,
+  defaultWebpSrc,
+  responsiveSrcSet,
+} from '../utils/responsiveImage';
 import { Badge } from '@/components/starwind/badge';
 import { Button } from '@/components/starwind/button';
 import {
@@ -52,6 +57,7 @@ const {
 const displayFeatures = features.slice(0, maxFeatures);
 const buyLink = checkoutLinkAttrs(buyUrl);
 const previewSrcSet = previewSrc ? responsiveSrcSet(previewSrc, CARD_IMAGE_WIDTHS) : undefined;
+const previewImgSrc = previewSrc ? defaultWebpSrc(previewSrc, CARD_IMAGE_WIDTHS) : undefined;
 
 const statusBadgeIcon = (text: string): IconName => {
   if (/limited/i.test(text)) return 'alert';
@@ -67,7 +73,9 @@ const statusBadgeIcon = (text: string): IconName => {
         <picture>
           <source type="image/webp" srcset={previewSrcSet} sizes={CARD_IMAGE_SIZES} />
           <img
-            src={previewSrc}
+            src={previewImgSrc}
+            srcset={previewSrcSet}
+            sizes={CARD_IMAGE_SIZES}
             alt={previewAlt}
             width={640}
             height={360}
