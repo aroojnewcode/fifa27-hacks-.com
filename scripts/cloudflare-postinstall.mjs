@@ -2,7 +2,7 @@
  * Cloudflare Workers Builds often run `npx wrangler deploy` without a separate build step.
  * When install runs on buildhome, produce dist/ so wrangler assets.directory exists.
  */
-import { existsSync } from 'node:fs';
+import { existsSync, rmSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import path from 'node:path';
 
@@ -18,10 +18,10 @@ if (!isCloudflareWorkersCi()) {
   process.exit(0);
 }
 
-const distIndex = path.join('dist', 'en', 'index.html');
-if (existsSync(distIndex)) {
-  console.log('[cloudflare] dist/ present; skipping postinstall build.');
-  process.exit(0);
+const distDir = path.join('dist');
+if (existsSync(distDir)) {
+  console.log('[cloudflare] Removing cached dist/ so deploy matches this commit.');
+  rmSync(distDir, { recursive: true, force: true });
 }
 
 console.log('[cloudflare] Building Astro site (dist/) for Wrangler static assets...');

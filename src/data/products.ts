@@ -4,6 +4,7 @@ import { getLocaleContent } from '../i18n/fullLocales';
 import type { LocalizedProductCopy } from '../i18n/fullLocales/types';
 import { checkoutForSlug, checkoutPath } from '../config/checkout';
 import type { IconName } from '../components/icons/types';
+import { productCatalogCoverPath } from './products/covers';
 
 export interface ProductSlide {
   src: string;
@@ -689,12 +690,13 @@ export const productPages: ProductPage[] = getProductPages(DEFAULT_LOCALE);
 
 export const cheatPages = productPages.filter((p) => p.kind === 'tier');
 
-/** Hero image on product catalog cards (home carousel + /products/). */
+/** Card image on /products/ and home carousel — dedicated PNG per slug when available. */
 export function getProductCatalogPreview(product: ProductPage): { src: string; alt: string } | undefined {
-  if (product.slug === 'unlock-all') {
+  if (product.kind === 'utility') {
+    const first = product.images[0];
     return {
-      src: `${gameplay}/fifa-27-skin-changer.png`,
-      alt: 'EA FC 27 Skin Changer — preview kits, badges and stadium themes on PC',
+      src: productCatalogCoverPath(product.slug),
+      alt: first?.alt ?? product.title,
     };
   }
   const first = product.images[0];
