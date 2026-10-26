@@ -25,6 +25,12 @@ export const LEGACY_PATH_MAP: Record<string, string> = {
   '/cheats/compare/': '/blog/fifa-27-lite-vs-pro/',
   '/contact': '/support/',
   '/contact/': '/support/',
+  '/products/fortnite-cheats': PRODUCT_BASE,
+  '/products/fortnite-cheats/': PRODUCT_BASE,
+  '/products/fortnite-cheats/elite': `${PRODUCT_BASE}elite/`,
+  '/products/fortnite-cheats/elite/': `${PRODUCT_BASE}elite/`,
+  '/products/fortnite-cheats/utilities': `${PRODUCT_BASE}utilities/`,
+  '/products/fortnite-cheats/utilities/': `${PRODUCT_BASE}utilities/`,
 };
 
 export function normalizeInternalPath(href: string): string {
