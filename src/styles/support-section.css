@@ -24,9 +24,21 @@
 
 @media (min-width: 1024px) {
   .support-section__cards {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
   }
+}
+
+/* Dedicated /support/ page — full-width band, no double horizontal inset */
+.support-section--standalone {
+  border-top: none;
+}
+
+.support-section--standalone .support-section__inner {
+  padding-top: 0;
 }
 
 html:not(.dark) .support-section__icon {

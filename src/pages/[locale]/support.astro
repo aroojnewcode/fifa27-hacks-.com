@@ -28,10 +28,10 @@ const seo = resolvePageSeo(Astro.url.pathname);
     ]),
   ]}
 >
-  <section class="py-8 md:py-12">
+  <section class="pb-4 pt-8 md:pb-6 md:pt-12">
     <div class="mx-auto max-w-6xl px-5">
       <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: t.support.title, path: '/support/' }]} locale={locale} />
-      <ContactSupportSection />
     </div>
   </section>
+  <ContactSupportSection class="support-section--standalone" />
 </BaseLayout>

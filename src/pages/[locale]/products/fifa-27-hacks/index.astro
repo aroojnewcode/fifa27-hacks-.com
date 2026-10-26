@@ -14,7 +14,7 @@ import { localizedProductPath, productPath } from '../../../../utils/path';
 export const getStaticPaths = localeStaticPaths;
 
 const locale = initLocalePage(Astro);
-const productPages = getProductPages(locale);
+const productPages = getProductPages(locale).filter((p) => p.kind !== 'tier');
 const seo = resolvePageSeo(Astro.url.pathname);
 const breadcrumbs = [
   { name: 'Home', path: '/' },
