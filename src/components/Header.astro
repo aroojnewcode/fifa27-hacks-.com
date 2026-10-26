@@ -40,17 +40,17 @@ const homeHref = localePath('/', locale);
 <header class="pointer-events-none fixed inset-x-0 top-0 z-50">
   <div class="flex justify-center px-3 pt-3 sm:px-4 sm:pt-4" data-floating-nav>
     <div
-      class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-2 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:grid lg:h-[3.75rem] lg:grid-cols-[minmax(0,1fr)_auto_auto] lg:items-center lg:gap-x-6 xl:gap-x-8"
+      class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-2 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:h-[3.75rem] lg:gap-3"
     >
     <a
       href={homeHref}
-      class="inline-flex min-w-0 shrink-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide lg:justify-self-start"
+      class="inline-flex min-w-0 shrink-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide"
     >
       <span class="truncate">EA FC 27<span class="text-primary">Cheats</span></span>
     </a>
 
     <nav
-      class="hidden min-w-0 max-w-full items-center justify-center gap-2 px-1 lg:col-start-2 lg:flex lg:gap-2.5 xl:gap-3"
+      class="hidden min-w-0 flex-1 items-center justify-center gap-1.5 px-1 lg:flex lg:gap-2 xl:gap-2.5"
       aria-label="Primary"
     >
       {t.nav.map((link) => (
@@ -67,7 +67,7 @@ const homeHref = localePath('/', locale);
     </nav>
 
     <div
-      class="flex shrink-0 items-center justify-end gap-2.5 lg:col-start-3 lg:justify-self-end lg:gap-3 lg:border-l lg:border-border/50 lg:pl-6 xl:pl-8"
+      class="flex shrink-0 items-center justify-end gap-2.5 lg:gap-3 lg:border-l lg:border-border/50 lg:pl-5 xl:pl-6"
     >
       <div class="hidden items-center sm:flex">
         <SlideRevealButton href={purchaseUrl} class="hidden lg:inline-flex" ariaLabel={t.ui.checkoutAria}>

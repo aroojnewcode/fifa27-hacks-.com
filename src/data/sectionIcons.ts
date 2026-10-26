@@ -46,7 +46,6 @@ export const heroStatusPills: { icon: IconName; label: string }[] = [
   { icon: 'espActive', label: 'ESP Active' },
   { icon: 'radarOnline', label: 'Radar Online' },
   { icon: 'seasonBuild', label: 'Season Build' },
-  { icon: 'undetected', label: 'Undetected' },
   { icon: 'softAim', label: 'Soft Aim Ready' },
   { icon: 'noRecoil', label: 'No Recoil' },
   { icon: 'streamProof', label: 'Stream Proof' },
